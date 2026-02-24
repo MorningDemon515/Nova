@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
         {
             W_Update(w);
 
-            R_Clear(r, 0.0f, 1.0f, 0.0f);
+            R_Clear(r, 0.3f, 0.5f, 0.2f);
 
             R_Present(r);
 

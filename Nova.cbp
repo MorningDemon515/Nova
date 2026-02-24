@@ -13,7 +13,11 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="Libs/glad/include" />
 				</Compiler>
+				<Linker>
+					<Add option="-lopengl32" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/Nova" prefix_auto="1" extension_auto="1" />
@@ -31,6 +35,24 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Common/Window.h" />
+		<Unit filename="Common/Window_Windows.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Libs/glad/src/glad.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Nova/Engine.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Nova/Engine.h" />
+		<Unit filename="Nova/Main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Renderer/Renderer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Renderer/Renderer.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-#include <GL/gl.h>
+#include <glad/glad.h>
 
 #ifdef _WIN32
 typedef int (WINAPI *CPFFunc)(HDC hdc,const PIXELFORMATDESCRIPTOR *ppfd);
@@ -50,6 +50,7 @@ Renderer* R_Create(Window* w,
     HGLRC hglrc = wglCreateContext(hdc);
     wglMakeCurrent(hdc, hglrc);
 
+    gladLoadGL();
     #endif // _WIN32
 
     Renderer* r = (Renderer*)malloc(sizeof(Renderer));
