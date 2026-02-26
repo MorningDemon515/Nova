@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include "Engine.h"
 
+#include "../Math/Math.h"
+
 int main(int argc, char *argv[])
 {
     InitEngine();
@@ -15,6 +17,16 @@ int main(int argc, char *argv[])
 
     Renderer* r;
     r = R_Create(w, 32, 24, 8);
+
+    Matrix m = {
+    1.0f, 2.0f, 3.0f, 4.0f,
+    0.0f, 0.0f, 0.0f, 0.0f,
+    0.0f, 0.0f, 0.0f, 0.0f,
+    0.0f, 0.0f, 0.0f, 0.0f
+    };
+
+    PrintMat(MatTranspose(m.data));
+
     MSG msg;
     while(1)
     {
