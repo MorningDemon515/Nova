@@ -19,13 +19,14 @@ int main(int argc, char *argv[])
     r = R_Create(w, 32, 24, 8);
 
     Matrix m = {
-    1.0f, 2.0f, 3.0f, 4.0f,
-    0.0f, 0.0f, 0.0f, 0.0f,
-    0.0f, 0.0f, 0.0f, 0.0f,
-    0.0f, 0.0f, 0.0f, 0.0f
+    1.0f, 0.0f, 0.0f, 0.0f,
+    0.0f, 1.0f ,0.0f, 0.0f,
+    0.0f, 0.0f, 1.0f, 0.0f,
+    1.0f, 2.0f, 3.0f, 1.0f
     };
 
-    PrintMat(MatTranspose(m.data));
+    Vector v= { 0.0f, 0.0f, 0.0f, 1.0f };
+    PrintVec(VecMulMat(v.data, m.data));
 
     MSG msg;
     while(1)

@@ -22,6 +22,7 @@ typedef struct Matrix Matrix;
 
 void PrintMat(Matrix m);
 
+Matrix FloatToMatrix(const float m[4][4]);
 Matrix MatTranspose(const float m[4][4]);
 
 Matrix MatAdd(const float m1[4][4], const float m2[4][4]);
@@ -34,6 +35,6 @@ float MatDet(const float m[4][4]);
 Matrix MatAdj(const float m[4][4]);
 Matrix MatInv(const float m[4][4]);
 
-Vector VecMulMat(const Vector v, const float m[4][4]);
+Vector VecMulMat(const float v[4], const float m[4][4]);
 
 #endif // MATRIX_H
