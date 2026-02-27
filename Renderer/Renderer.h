@@ -2,6 +2,7 @@
 #define RENDERER_H
 
 #include "../Common/Window.h"
+#include "../Math/Math.h"
 
 struct Renderer
 {
@@ -21,7 +22,7 @@ Renderer* R_Create(Window* w,
 
 void R_Close(Renderer* r);
 
-void R_Clear(Renderer*r, float red, float green, float blue);
+void R_Clear(Renderer*r, Vector color);
 void R_Present(Renderer*r);
 
 #endif // RENDERER_H

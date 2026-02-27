@@ -10,4 +10,8 @@ float Lerp(float a, float b, float t);
 float ToRadian(float angle);
 float ToAngle(float radian);
 
+Vector Vec2(float x, float y);
+Vector Vec3(float x, float y, float z);
+Vector Vec4(float x, float y, float z, float w);
+
 #endif // MATH_H

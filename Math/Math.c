@@ -21,3 +21,21 @@ float ToAngle(float radian)
 {
     return radian * 180.0f * MD_PIReciprocal;
 }
+
+Vector Vec2(float x, float y)
+{
+    Vector v = { x, y, 0.0f, 0.0f };
+    return v;
+}
+
+Vector Vec3(float x, float y, float z)
+{
+    Vector v = { x, y, z, 0.0f };
+    return v;
+}
+
+Vector Vec4(float x, float y, float z, float w)
+{
+    Vector v = { x, y, z, w };
+    return v;
+}

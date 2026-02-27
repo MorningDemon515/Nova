@@ -3,9 +3,9 @@
 #endif // _WIN32
 
 #include <stdio.h>
-#include "Engine.h"
+#include <stdlib.h>
 
-#include "../Math/Math.h"
+#include "Engine.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,16 +17,6 @@ int main(int argc, char *argv[])
 
     Renderer* r;
     r = R_Create(w, 32, 24, 8);
-
-    Matrix m = {
-    1.0f, 0.0f, 0.0f, 0.0f,
-    0.0f, 1.0f ,0.0f, 0.0f,
-    0.0f, 0.0f, 1.0f, 0.0f,
-    1.0f, 2.0f, 3.0f, 1.0f
-    };
-
-    Vector v= { 0.0f, 0.0f, 0.0f, 1.0f };
-    PrintVec(VecMulMat(v.data, m.data));
 
     MSG msg;
     while(1)
@@ -44,7 +34,7 @@ int main(int argc, char *argv[])
         {
             W_Update(w);
 
-            R_Clear(r, 0.3f, 0.5f, 0.2f);
+            R_Clear(r, Vec3(0.2f, 0.5f, 0.3f));
 
             R_Present(r);
 

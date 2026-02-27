@@ -73,6 +73,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Renderer/Renderer.h" />
+		<Unit filename="Renderer/Shader.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Renderer/Shader.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

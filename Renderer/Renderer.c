@@ -76,9 +76,9 @@ void R_Close(Renderer* r)
     free(r);
 }
 
-void R_Clear(Renderer*r, float red, float green, float blue)
+void R_Clear(Renderer*r, Vector color)
 {
-    glClearColor(red, green, blue, 1.0f);
+    glClearColor(color.x, color.y, color.z, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
