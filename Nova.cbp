@@ -58,6 +58,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Math/Matrix.h" />
+		<Unit filename="Math/Transform.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Math/Vector.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -67,6 +70,9 @@
 		</Unit>
 		<Unit filename="Nova/Engine.h" />
 		<Unit filename="Nova/Main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Renderer/Rect.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Renderer/Renderer.c">

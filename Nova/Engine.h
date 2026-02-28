@@ -3,6 +3,7 @@
 
 #include "../Common/Window.h"
 #include "../Renderer/Renderer.h"
+#include "../Renderer/Shader.h"
 
 void InitEngine();
 void QuitEngine();

@@ -10,6 +10,9 @@ typedef BOOL (WINAPI *SBFunc)(HDC unnamedParaml);
 static HMODULE gdiDLL;
 #endif // _WIN32
 
+static float n = 0.1f;
+static float f = 100.0f;
+
 Renderer* R_Create(Window* w,
                         unsigned int colorBits,
                         unsigned int depthBits,
@@ -61,6 +64,10 @@ Renderer* R_Create(Window* w,
     r->hglrc = hglrc;
     #endif // _WIN32
 
+    r->proj = Orthproj(w->width, w->height, n, f);
+
+    glViewport(0, 0, w->width, w->height);
+
     return r;
 }
 
@@ -74,6 +81,12 @@ void R_Close(Renderer* r)
     FreeLibrary(gdiDLL);
     #endif //_WIN32
     free(r);
+}
+
+void R_Update(Renderer* r)
+{
+    r->proj = Orthproj(r->w->width, r->w->height, n, f);
+    glViewport(0, 0, r->w->width, r->w->height);
 }
 
 void R_Clear(Renderer*r, Vector color)

@@ -37,4 +37,11 @@ Matrix MatInv(const float m[4][4]);
 
 Vector VecMulMat(const float v[4], const float m[4][4]);
 
+Matrix MatIdentity();
+
+//Transform Funcation-------------------------------------------------
+Matrix Translation(Vector pos);
+Matrix Scale(Vector s);
+Matrix Orthproj(float w, float h, float n, float f);
+
 #endif // MATRIX_H

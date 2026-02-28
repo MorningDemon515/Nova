@@ -256,3 +256,25 @@ Vector VecMulMat(const float v[4], const float m[4][4])
 
     return result;
 }
+
+Matrix MatIdentity()
+{
+    Matrix result = { 0 };
+
+    for(int i= 0; i < 4; i++)
+    {
+        for(int j = 0; j < 4; j++)
+        {
+            if(i == j)
+            {
+                result.data[i][j] = 1.0f;
+            }
+            else
+            {
+                result.data[i][j] = 0.0f;
+            }
+        }
+    }
+
+    return result;
+}
