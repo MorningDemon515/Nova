@@ -39,3 +39,9 @@ Vector Vec4(float x, float y, float z, float w)
     Vector v = { x, y, z, w };
     return v;
 }
+
+Quaternion Quat(float a, float b, float c, float d)
+{
+    Quaternion q = {a, b, c, d};
+    return q;
+}

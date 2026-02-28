@@ -14,10 +14,10 @@ Rect* R_CreateRect(Renderer* r, Vector rect, Vector color)
     Rect* r_ = (Rect*)malloc(sizeof(Rect));
 
     float vertices[] = {
-        rect.x + rect.z * 1.0f,    rect.y + rect.w * 1.0f,              0.0f,
-        rect.x + rect.z * 1.0f,    rect.y + 0.0f,                          0.0f,
-        rect.x + 0.0f,                 rect.y + 0.0f,                          0.0f,
-        rect.x + 0.0f,                 rect.y + rect.w * 1.0f,           0.0f
+        rect.z / 2.0f,    rect.w / 2.0f,           0.0f,
+        rect.z / 2.0f ,     -rect.w / 2.0f,             0.0f,
+        -rect.z / 2.0f ,     -rect.w / 2.0f,             0.0f,
+        -rect.z / 2.0f ,       rect.w / 2.0f,           0.0f
     };
 
     unsigned int indices[] = {
@@ -29,7 +29,8 @@ Rect* R_CreateRect(Renderer* r, Vector rect, Vector color)
     UseShader(r_->shader);
     SetShaderVec3(r_->shader, "Color", color);
 
-    SetShaderMatrix(r_->shader, "world", MatIdentity());
+    SetShaderMatrix(r_->shader, "tsl", Translation(Vec3(rect.x, rect.y, 0.0f)));
+    SetShaderMatrix(r_->shader, "rot", MatIdentity());
     SetShaderMatrix(r_->shader, "proj", MatIdentity());
 
     glGenVertexArrays(1, &r_->VAO);
@@ -52,6 +53,11 @@ Rect* R_CreateRect(Renderer* r, Vector rect, Vector color)
 
     r_->renderer = r;
 
+    r_->x = rect.x;
+    r_->y = rect.y;
+    r_->w = rect.z;
+    r_->h = rect.w;
+
     return r_;
 }
 
@@ -64,10 +70,16 @@ void R_DeleteRect(Rect* r)
     free(r);
 }
 
+static int i = 0;
+
 void R_DrawRect(Rect* r)
 {
+    i++;
+    Quaternion q = QuatFromAxisAngle(Vec3(0.0f, 0.0f, 1.0f), (float)i * 0.001f);
+
      UseShader(r->shader);
      SetShaderMatrix(r->shader, "proj", r->renderer->proj);
+     SetShaderMatrix(r->shader, "rot", QuatToMat(q.data));
 
      glBindVertexArray(r->VAO);
      glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     Renderer* r;
     r = R_Create(w, 32, 24, 8);
 
-    Rect* r1 = R_CreateRect(r, Vec4(0.0f, 0.0f, 100.0f, 100.0f), Vec3(1.0f, 0.0f, 0.0f));
+    Rect* r1 = R_CreateRect(r, Vec4(400.0f, 300.0f, 100.0f, 100.0f), Vec3(1.0f, 0.0f, 0.0f));
 
     MSG msg;
     while(1)

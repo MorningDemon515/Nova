@@ -29,6 +29,7 @@ void R_Present(Renderer*r);
 
 struct Rect
 {
+    int x, y, w, h;
     Renderer* renderer;
     unsigned int VAO, VBO, EBO;
     Shader* shader;

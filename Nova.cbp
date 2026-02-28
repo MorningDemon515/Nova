@@ -58,6 +58,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Math/Matrix.h" />
+		<Unit filename="Math/Quaternion.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Math/Quaternion.h" />
 		<Unit filename="Math/Transform.c">
 			<Option compilerVar="CC" />
 		</Unit>
