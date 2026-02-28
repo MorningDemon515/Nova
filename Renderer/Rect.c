@@ -32,6 +32,7 @@ Rect* R_CreateRect(Renderer* r, Vector rect, Vector color)
     SetShaderMatrix(r_->shader, "tsl", Translation(Vec3(rect.x, rect.y, 0.0f)));
     SetShaderMatrix(r_->shader, "rot", MatIdentity());
     SetShaderMatrix(r_->shader, "proj", MatIdentity());
+    SetShaderMatrix(r_->shader, "scale", MatIdentity());
 
     glGenVertexArrays(1, &r_->VAO);
     glGenBuffers(1, &r_->VBO);
@@ -70,18 +71,32 @@ void R_DeleteRect(Rect* r)
     free(r);
 }
 
-static int i = 0;
-
 void R_DrawRect(Rect* r)
 {
-    i++;
-    Quaternion q = QuatFromAxisAngle(Vec3(0.0f, 0.0f, 1.0f), (float)i * 0.001f);
-
      UseShader(r->shader);
      SetShaderMatrix(r->shader, "proj", r->renderer->proj);
-     SetShaderMatrix(r->shader, "rot", QuatToMat(q.data));
 
      glBindVertexArray(r->VAO);
      glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
      glBindVertexArray(0);
+}
+
+void R_SetRectPos(Rect* r, Vector pos)
+{
+    UseShader(r->shader);
+    SetShaderMatrix(r->shader, "tsl", Translation(pos));
+}
+
+void R_SetRectRot(Rect* r, float angle)
+{
+    Quaternion q = QuatFromAxisAngle(Vec3(0.0f, 0.0f, 1.0f), angle);
+
+    UseShader(r->shader);
+    SetShaderMatrix(r->shader, "rot", QuatToMat(q.data));
+}
+
+void R_SetRectSize(Rect* r, float s)
+{
+     UseShader(r->shader);
+    SetShaderMatrix(r->shader, "scale", Scale(Vec3(s, s, s)));
 }

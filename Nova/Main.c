@@ -20,9 +20,11 @@ int main(int argc, char *argv[])
     Renderer* r;
     r = R_Create(w, 32, 24, 8);
 
-    Rect* r1 = R_CreateRect(r, Vec4(400.0f, 300.0f, 100.0f, 100.0f), Vec3(1.0f, 0.0f, 0.0f));
+    Rect* r1 = R_CreateRect(r, Vec4(0.0f, 0.0f, 100.0f, 100.0f), Vec3(1.0f, 0.0f, 0.0f));
 
     MSG msg;
+
+    int i = 0;
     while(1)
     {
         #ifdef _WIN32
@@ -40,6 +42,12 @@ int main(int argc, char *argv[])
             R_Update(r);
 
             R_Clear(r, Vec3(0.2f, 0.5f, 0.3f));
+
+            R_SetRectPos(r1, Vec2(W_GetWidth(w) / 2.0f, W_GetHeight(w) / 2.0f));
+            R_SetRectSize(r1,  5.0f);
+
+            i++;
+            R_SetRectRot(r1, (float)i * 0.001f);
 
             R_DrawRect(r1);
 

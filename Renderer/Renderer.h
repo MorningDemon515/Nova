@@ -40,5 +40,8 @@ typedef struct Rect Rect;
 Rect* R_CreateRect(Renderer* r, Vector rect, Vector color);
 void R_DeleteRect(Rect* r);
 void R_DrawRect(Rect* r);
+void R_SetRectPos(Rect* r, Vector pos);
+void R_SetRectRot(Rect* r, float angle);
+void R_SetRectSize(Rect* r, float s);
 
 #endif // RENDERER_H
