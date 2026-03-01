@@ -16,6 +16,7 @@
 					<Add option="-g" />
 					<Add option="-ftree-vectorize" />
 					<Add directory="Libs/glad/include" />
+					<Add directory="Libs/stb" />
 				</Compiler>
 				<Linker>
 					<Add option="-lopengl32" />
@@ -31,6 +32,7 @@
 					<Add option="-O2" />
 					<Add option="-ftree-vectorize" />
 					<Add directory="Libs/glad/include" />
+					<Add directory="Libs/stb" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

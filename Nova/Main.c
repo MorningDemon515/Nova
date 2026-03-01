@@ -9,6 +9,8 @@
 
 #include <glad/glad.h>
 
+#include <stb_image.h>
+
 int main(int argc, char *argv[])
 {
     InitEngine();
@@ -47,7 +49,7 @@ int main(int argc, char *argv[])
             R_SetRectSize(r1,  5.0f);
 
             i++;
-            R_SetRectRot(r1, (float)i * 0.001f);
+            R_SetRectRot(r1, (float)i * 0.005f);
 
             R_DrawRect(r1);
 
