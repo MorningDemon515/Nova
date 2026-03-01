@@ -1,0 +1,3 @@
+[submodule "Libs/stb"]
+	path = Libs/stb
+	url = https://github.com/MorningDemon515/stb.git
