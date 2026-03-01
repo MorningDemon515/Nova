@@ -3,7 +3,20 @@
 out vec4 FragColor;
 uniform vec3 Color;
 
+in vec2 texCoords;
+uniform sampler2D texture_;
+
+uniform int isT;
+
 void main()
 {
-      FragColor = vec4(Color, 1.0);
+      if(isT == 1)
+      {
+             FragColor = texture(texture_, texCoords);
+      }
+      else
+      {
+             FragColor = vec4(Color, 1.0);
+      }
+     
 }

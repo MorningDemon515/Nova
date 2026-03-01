@@ -3,6 +3,7 @@
 
 #include "../Common/Window.h"
 #include "Shader.h"
+#include "Texture.h"
 
 struct Renderer
 {
@@ -32,12 +33,14 @@ struct Rect
     int x, y, w, h;
     Renderer* renderer;
     unsigned int VAO, VBO, EBO;
+    Texture* texture;
     Shader* shader;
+    int isTex;
 };
 
 typedef struct Rect Rect;
 
-Rect* R_CreateRect(Renderer* r, Vector rect, Vector color);
+Rect* R_CreateRect(Renderer* r, Vector rect, Vector color, int isT, const char* image);
 void R_DeleteRect(Rect* r);
 void R_DrawRect(Rect* r);
 void R_SetRectPos(Rect* r, Vector pos);

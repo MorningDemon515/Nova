@@ -1,6 +1,7 @@
 #include "Renderer.h"
 
 #include <glad/glad.h>
+#include <stb_image.h>
 
 #ifdef _WIN32
 typedef int (WINAPI *CPFFunc)(HDC hdc,const PIXELFORMATDESCRIPTOR *ppfd);
@@ -68,6 +69,7 @@ Renderer* R_Create(Window* w,
 
     glViewport(0, 0, w->width, w->height);
 
+    stbi_set_flip_vertically_on_load(true);
     return r;
 }
 

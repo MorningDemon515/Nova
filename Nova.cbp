@@ -89,6 +89,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Renderer/Shader.h" />
+		<Unit filename="Renderer/Texture.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Renderer/Texture.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

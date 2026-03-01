@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-Rect* R_CreateRect(Renderer* r, Vector rect, Vector color)
+Rect* R_CreateRect(Renderer* r, Vector rect, Vector color, int isT, const char* image)
 {
     /*
     rect.x -> x
@@ -14,10 +14,10 @@ Rect* R_CreateRect(Renderer* r, Vector rect, Vector color)
     Rect* r_ = (Rect*)malloc(sizeof(Rect));
 
     float vertices[] = {
-        rect.z / 2.0f,    rect.w / 2.0f,           0.0f,
-        rect.z / 2.0f ,     -rect.w / 2.0f,             0.0f,
-        -rect.z / 2.0f ,     -rect.w / 2.0f,             0.0f,
-        -rect.z / 2.0f ,       rect.w / 2.0f,           0.0f
+         rect.z / 2.0f,    rect.w / 2.0f,    0.0f,  1.0f, 1.0f,
+         rect.z / 2.0f ,  -rect.w / 2.0f,    0.0f,  1.0f, 0.0f,
+        -rect.z / 2.0f ,  -rect.w / 2.0f,    0.0f,  0.0f, 0.0f,
+        -rect.z / 2.0f ,    rect.w / 2.0f,    0.0f,  0.0f, 1.0f
     };
 
     unsigned int indices[] = {
@@ -45,8 +45,11 @@ Rect* R_CreateRect(Renderer* r, Vector rect, Vector color)
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
     glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
@@ -59,11 +62,25 @@ Rect* R_CreateRect(Renderer* r, Vector rect, Vector color)
     r_->w = rect.z;
     r_->h = rect.w;
 
+    if(isT == 1)
+    {
+        SetShaderInt(r_->shader, "texture_", 0);
+        r_->texture = CreateTex(image);
+    }
+
+    r_->isTex = isT;
+
+    SetShaderInt(r_->shader, "isT", isT);
+
     return r_;
 }
 
 void R_DeleteRect(Rect* r)
 {
+    if(r->isTex == 1)
+    {
+         DeleteTex(r->texture);
+    }
     DeleteShader(r->shader);
     glDeleteVertexArrays(1, &r->VAO);
     glDeleteBuffers(1, &r->VBO);
@@ -73,6 +90,11 @@ void R_DeleteRect(Rect* r)
 
 void R_DrawRect(Rect* r)
 {
+    if(r->isTex == 1)
+    {
+        SetTex(r->texture, 0);
+    }
+
      UseShader(r->shader);
      SetShaderMatrix(r->shader, "proj", r->renderer->proj);
 
